@@ -1,0 +1,38 @@
+{
+  "name": "@soliantconsulting/fm-mock-server",
+  "version": "1.0.0",
+  "description": "Mock server for FileMaker OData script calls",
+  "type": "module",
+  "author": "Soliant Consulting",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "format": "biome format . --write",
+    "check": "biome check . --apply"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "@tsconfig/node20": "^20.1.2",
+    "@types/koa": "^2.15.0",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/node": "^20.11.24",
+    "lefthook": "^1.6.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "http-graceful-shutdown": "^3.1.13",
+    "koa": "^2.15.0",
+    "koa-bodyparser": "^4.4.1",
+    "koa-tree-router": "^0.12.1",
+    "openapi3-ts": "^4.2.2",
+    "zod": "^3.22.4"
+  }
+}
