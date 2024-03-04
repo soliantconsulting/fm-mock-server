@@ -5,6 +5,7 @@
         "noImplicitAny": true,
         "sourceMap": true,
         "outDir": "dist",
+        "declaration": true,
         "stripInternal": true
     },
     "include": [
