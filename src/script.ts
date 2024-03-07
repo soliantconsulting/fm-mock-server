@@ -39,7 +39,7 @@ export const scriptHandlerProxy =
 
         if (!bodyParseResult.success) {
             console.error(bodyParseResult.error);
-            context.body = { code: 1, resultParameter: "" };
+            context.body = { scriptResult: { code: 1, resultParameter: "" } };
             return;
         }
 
@@ -49,13 +49,15 @@ export const scriptHandlerProxy =
             scriptResult = await scriptHandler(bodyParseResult);
         } catch (error) {
             console.error(error);
-            context.body = { code: 1, resultParameter: "" };
+            context.body = { scriptResult: { code: 1, resultParameter: "" } };
             return;
         }
 
         context.body = {
-            code: 0,
-            resultParameter: JSON.stringify(scriptResult),
+            scriptResult: {
+                code: 0,
+                resultParameter: JSON.stringify(scriptResult),
+            },
         };
     };
 
