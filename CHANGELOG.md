@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.1...v1.0.2) (2024-03-07)
+
+
+### Bug Fixes
+
+* **script:** wrap result in scriptResult property ([c106ca8](https://github.com/soliantconsulting/fm-mock-server/commit/c106ca8139f4e300ba5107bd0d1722dde3d08897))
+
 ## [1.0.1](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.0...v1.0.1) (2024-03-04)
 
 
