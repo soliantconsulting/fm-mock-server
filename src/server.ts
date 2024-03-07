@@ -17,7 +17,7 @@ export const runServer = (options: Options) => {
     app.use(router.routes());
 
     const server = app.listen(options.port, options.hostname, undefined, () => {
-        console.info(`Server started on ${server.address()}`);
+        console.info(`Server started on ${JSON.stringify(server.address())}`);
     });
 
     gracefulShutdown(server);
