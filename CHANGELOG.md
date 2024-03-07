@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.3...v1.0.4) (2024-03-07)
+
+
+### Bug Fixes
+
+* **script:** parse from context.request.body instead of context.body ([b972c33](https://github.com/soliantconsulting/fm-mock-server/commit/b972c33d69c7400b5f2e2996e061cbd78e846c3a))
+
 ## [1.0.3](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.2...v1.0.3) (2024-03-07)
 
 
