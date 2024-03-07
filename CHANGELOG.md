@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.4...v1.0.5) (2024-03-07)
+
+
+### Bug Fixes
+
+* **server:** stringify address before outputing ([185a9b4](https://github.com/soliantconsulting/fm-mock-server/commit/185a9b43488add7434405f9383bc8e958c521530))
+
 ## [1.0.4](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.3...v1.0.4) (2024-03-07)
 
 
