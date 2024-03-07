@@ -29,7 +29,7 @@ export type ScriptHandlerResult =
       };
 
 const bodySchema = z.object({
-    scriptParameterValue: z.string().transform((value) => JSON.parse(value)),
+    scriptParameterValue: z.unknown(),
 });
 
 export const scriptHandlerProxy =
