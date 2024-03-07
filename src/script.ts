@@ -35,7 +35,7 @@ const bodySchema = z.object({
 export const scriptHandlerProxy =
     (scriptHandler: ScriptHandler) =>
     async (context: RouterContext): Promise<void> => {
-        const bodyParseResult = bodySchema.safeParse(context.body);
+        const bodyParseResult = bodySchema.safeParse(context.request.body);
 
         if (!bodyParseResult.success) {
             console.error(bodyParseResult.error);
