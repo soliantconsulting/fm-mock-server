@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.7...v1.0.8) (2024-03-27)
+
+
+### Bug Fixes
+
+* default script parameter to unknown ([180e2db](https://github.com/soliantconsulting/fm-mock-server/commit/180e2db387541eedaf946c9db713971508f1a2a4))
+
 ## [1.0.7](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.6...v1.0.7) (2024-03-27)
 
 
