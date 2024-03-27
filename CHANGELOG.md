@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.6...v1.0.7) (2024-03-27)
+
+
+### Bug Fixes
+
+* let scripts specify the parameter type ([ebcb85d](https://github.com/soliantconsulting/fm-mock-server/commit/ebcb85d09c5b68d526f47dbbf8588d0528939fc7))
+
 ## [1.0.6](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.5...v1.0.6) (2024-03-27)
 
 
