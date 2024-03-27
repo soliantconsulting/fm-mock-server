@@ -10,7 +10,7 @@ export type ScriptDefinition = {
     responseSchema: SchemaObject;
 };
 
-export type Script<T> = {
+export type Script<T = unknown> = {
     handler: ScriptHandler<T>;
     definition: ScriptDefinition;
     schemaDependencies?: Record<string, SchemaObject>;
