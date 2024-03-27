@@ -46,7 +46,7 @@ export const scriptHandlerProxy =
         let scriptResult: ScriptHandlerResult;
 
         try {
-            scriptResult = await scriptHandler(bodyParseResult);
+            scriptResult = await scriptHandler(bodyParseResult.data.scriptParameterValue);
         } catch (error) {
             console.error(error);
             context.body = { scriptResult: { code: 1, resultParameter: "" } };
