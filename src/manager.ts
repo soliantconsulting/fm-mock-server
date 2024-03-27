@@ -3,10 +3,10 @@ import type { PathItemObject, SchemaObject } from "openapi3-ts/oas31";
 import { type Script, buildScriptPathItemObject, scriptHandlerProxy } from "./script.js";
 
 export class ScriptManager {
-    private readonly scripts = new Map<string, Script>();
+    private readonly scripts = new Map<string, Script<unknown>>();
 
-    public addScript(name: string, script: Script) {
-        this.scripts.set(name, script);
+    public addScript<T>(name: string, script: Script<T>) {
+        this.scripts.set(name, script as Script<unknown>);
     }
 
     /**

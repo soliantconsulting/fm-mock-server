@@ -2,7 +2,7 @@ import type { RouterContext } from "koa-tree-router";
 import type { PathItemObject, SchemaObject } from "openapi3-ts/oas31";
 import { z } from "zod";
 
-export type ScriptHandler = (parameter: unknown) => Promise<ScriptHandlerResult>;
+export type ScriptHandler<T> = (parameter: T) => Promise<ScriptHandlerResult>;
 
 export type ScriptDefinition = {
     description: string;
@@ -10,8 +10,8 @@ export type ScriptDefinition = {
     responseSchema: SchemaObject;
 };
 
-export type Script = {
-    handler: ScriptHandler;
+export type Script<T> = {
+    handler: ScriptHandler<T>;
     definition: ScriptDefinition;
     schemaDependencies?: Record<string, SchemaObject>;
 };
@@ -33,7 +33,7 @@ const bodySchema = z.object({
 });
 
 export const scriptHandlerProxy =
-    (scriptHandler: ScriptHandler) =>
+    (scriptHandler: ScriptHandler<unknown>) =>
     async (context: RouterContext): Promise<void> => {
         const bodyParseResult = bodySchema.safeParse(context.request.body);
 
