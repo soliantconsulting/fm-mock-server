@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.5...v1.0.6) (2024-03-27)
+
+
+### Bug Fixes
+
+* pass script parameter value into scripts ([cb94b2b](https://github.com/soliantconsulting/fm-mock-server/commit/cb94b2bc8dd90e5782a0fd3d74b8180fcdba8865))
+
 ## [1.0.5](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.4...v1.0.5) (2024-03-07)
 
 
