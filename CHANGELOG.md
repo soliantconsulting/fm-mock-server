@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.8...v1.1.0) (2024-04-01)
+
+
+### Features
+
+* add expose flag to errors ([d818609](https://github.com/soliantconsulting/fm-mock-server/commit/d818609300a572fa730a14a150e4897311ef10f4))
+
 ## [1.0.8](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.7...v1.0.8) (2024-03-27)
 
 
