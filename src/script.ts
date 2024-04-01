@@ -25,6 +25,7 @@ export type ScriptHandlerResult =
               code: string;
               title: string;
               detail?: string;
+              expose?: boolean;
           }[];
       };
 

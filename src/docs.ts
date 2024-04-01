@@ -26,15 +26,23 @@ const defaultErrorResponse: ResponseObject = {
                                 code: {
                                     type: "string",
                                     description: "Machine readable snake_case code",
+                                    minLength: 1,
                                 },
                                 title: {
                                     type: "string",
                                     description:
                                         "Title of the error, should not change per error code",
+                                    minLength: 1,
                                 },
                                 detail: {
                                     type: "string",
                                     description: "Detailed description of the error",
+                                    minLength: 1,
+                                },
+                                expose: {
+                                    type: "boolean",
+                                    description: "Whether to expose the error to the end-user",
+                                    default: false,
                                 },
                             },
                             required: ["code", "title"],
