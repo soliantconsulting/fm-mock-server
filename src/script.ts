@@ -8,6 +8,7 @@ export type ScriptDefinition = {
     description: string;
     requestSchema: SchemaObject;
     responseSchema: SchemaObject;
+    metaSchema?: SchemaObject;
 };
 
 export type Script<T = unknown> = {
@@ -19,6 +20,7 @@ export type Script<T = unknown> = {
 export type ScriptHandlerResult =
     | {
           data: unknown;
+          meta?: unknown;
       }
     | {
           errors: {
@@ -82,8 +84,9 @@ export const buildScriptPathItemObject = (definition: ScriptDefinition): PathIte
                                 type: "object",
                                 properties: {
                                     data: definition.responseSchema,
+                                    meta: definition.metaSchema,
                                 },
-                                required: ["data"],
+                                required: definition.metaSchema ? ["data", "meta"] : ["data"],
                             },
                         },
                     },
