@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.2.0...v1.3.0) (2024-04-26)
+
+
+### Features
+
+* add optional tags definition for scripts ([6426d08](https://github.com/soliantconsulting/fm-mock-server/commit/6426d08d3c6d4a32bfb7d64be08f0610e3188d41))
+
 # [1.2.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.1.0...v1.2.0) (2024-04-26)
 
 
