@@ -5,6 +5,7 @@ import { z } from "zod";
 export type ScriptHandler<T> = (parameter: T) => Promise<ScriptHandlerResult>;
 
 export type ScriptDefinition = {
+    tags?: string[];
     description: string;
     requestSchema: SchemaObject;
     responseSchema: SchemaObject;
@@ -67,6 +68,7 @@ export const scriptHandlerProxy =
 export const buildScriptPathItemObject = (definition: ScriptDefinition): PathItemObject => {
     return {
         post: {
+            tags: definition.tags,
             description: definition.description,
             requestBody: {
                 required: true,
