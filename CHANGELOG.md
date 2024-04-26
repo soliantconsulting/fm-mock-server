@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.1.0...v1.2.0) (2024-04-26)
+
+
+### Features
+
+* allow defining meta schemas ([32865a0](https://github.com/soliantconsulting/fm-mock-server/commit/32865a07449e227a8f18c4d1829c4d7c07e3e601))
+
 # [1.1.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.0.8...v1.1.0) (2024-04-01)
 
 
