@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.3.0...v1.4.0) (2024-04-29)
+
+
+### Features
+
+* allow injecting global schemas into manager ([b333b5f](https://github.com/soliantconsulting/fm-mock-server/commit/b333b5f9bddcfe7e9a6242ee108209193bdf0fca))
+
 # [1.3.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.2.0...v1.3.0) (2024-04-26)
 
 
