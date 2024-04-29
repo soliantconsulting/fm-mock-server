@@ -27,22 +27,22 @@
     "check": "biome check . --apply"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
-    "@commitlint/cli": "^19.0.3",
-    "@commitlint/config-conventional": "^19.0.3",
-    "@tsconfig/node20": "^20.1.2",
+    "@biomejs/biome": "1.7.1",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@tsconfig/node20": "^20.1.4",
     "@types/koa": "^2.15.0",
     "@types/koa-bodyparser": "^4.3.12",
-    "@types/node": "^20.11.24",
-    "lefthook": "^1.6.5",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.12.7",
+    "lefthook": "^1.6.10",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "http-graceful-shutdown": "^3.1.13",
-    "koa": "^2.15.0",
+    "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
     "koa-tree-router": "^0.12.1",
-    "openapi3-ts": "^4.2.2",
-    "zod": "^3.22.4"
+    "openapi3-ts": "^4.3.1",
+    "zod": "^3.23.4"
   }
 }

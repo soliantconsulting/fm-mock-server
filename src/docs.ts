@@ -1,5 +1,5 @@
-import path from "path";
-import { mkdir, writeFile } from "fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { OpenApiBuilder, type ResponseObject } from "openapi3-ts/oas31";
 import type { ScriptManager } from "./manager.js";
 

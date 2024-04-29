@@ -3,10 +3,15 @@ import type { PathItemObject, SchemaObject } from "openapi3-ts/oas31";
 import { type Script, buildScriptPathItemObject, scriptHandlerProxy } from "./script.js";
 
 export class ScriptManager {
-    private readonly scripts = new Map<string, Script<unknown>>();
+    private readonly scripts = new Map<string, Script>();
+    private readonly schemas = new Map<string, SchemaObject>();
 
     public addScript<T>(name: string, script: Script<T>) {
-        this.scripts.set(name, script as Script<unknown>);
+        this.scripts.set(name, script as Script);
+    }
+
+    public addSchema(name: string, schema: SchemaObject) {
+        this.schemas.set(name, schema);
     }
 
     /**
@@ -39,6 +44,10 @@ export class ScriptManager {
      */
     public getSchemaDependencies(): Record<string, SchemaObject> {
         const schemaObjects: Record<string, SchemaObject> = {};
+
+        for (const [name, schema] of this.schemas.entries()) {
+            schemaObjects[name] = schema;
+        }
 
         for (const script of this.scripts.values()) {
             if (!script.schemaDependencies) {
