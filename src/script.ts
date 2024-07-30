@@ -1,5 +1,5 @@
 import type { RouterContext } from "koa-tree-router";
-import type { PathItemObject, SchemaObject } from "openapi3-ts/oas31";
+import type { PathItemObject, ReferenceObject, SchemaObject } from "openapi3-ts/oas31";
 import { z } from "zod";
 
 export type ScriptHandler<T> = (parameter: T) => Promise<ScriptHandlerResult>;
@@ -7,9 +7,9 @@ export type ScriptHandler<T> = (parameter: T) => Promise<ScriptHandlerResult>;
 export type ScriptDefinition = {
     tags?: string[];
     description: string;
-    requestSchema: SchemaObject;
-    responseSchema: SchemaObject;
-    metaSchema?: SchemaObject;
+    requestSchema: SchemaObject | ReferenceObject;
+    responseSchema: SchemaObject | ReferenceObject;
+    metaSchema?: SchemaObject | ReferenceObject;
 };
 
 export type Script<T = unknown> = {
