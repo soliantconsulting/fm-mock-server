@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.4.0...v1.5.0) (2024-07-30)
+
+
+### Features
+
+* allow to pass reference objects for script schemas ([160364d](https://github.com/soliantconsulting/fm-mock-server/commit/160364d1146af31b22ac5ad3642906f8b4261e77))
+
 # [1.4.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.3.0...v1.4.0) (2024-04-29)
 
 
