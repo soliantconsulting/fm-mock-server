@@ -7,6 +7,7 @@ export type ScriptHandler<T> = (parameter: T) => Promise<ScriptHandlerResult>;
 export type ScriptDefinition = {
     tags?: string[];
     description: string;
+    summary?: string;
     requestSchema: SchemaObject | ReferenceObject;
     responseSchema: SchemaObject | ReferenceObject;
     metaSchema?: SchemaObject | ReferenceObject;
@@ -70,6 +71,7 @@ export const buildScriptPathItemObject = (definition: ScriptDefinition): PathIte
         post: {
             tags: definition.tags,
             description: definition.description,
+            summary: definition.summary,
             requestBody: {
                 required: true,
                 content: {
