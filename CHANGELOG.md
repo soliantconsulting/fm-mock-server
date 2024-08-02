@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.5.0...v1.6.0) (2024-08-02)
+
+
+### Features
+
+* allow defining summary for operations ([ed1610d](https://github.com/soliantconsulting/fm-mock-server/commit/ed1610de29217344f5898e074ca76dfbe278830b))
+
 # [1.5.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.4.0...v1.5.0) (2024-07-30)
 
 
