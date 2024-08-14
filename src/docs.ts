@@ -64,6 +64,10 @@ export const renderDocs = async (options: Options): Promise<void> => {
         version: options.version ?? "1.0.0",
     });
 
+    builder.addServer({
+        url: "script-name: ",
+    });
+
     builder.addResponse("GenericError", options.errorResponse ?? defaultErrorResponse);
 
     const scriptDefinitions = options.scriptManager.getScriptDefinitions();
