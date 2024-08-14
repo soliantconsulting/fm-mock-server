@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.6.0...v1.7.0) (2024-08-14)
+
+
+### Features
+
+* force better display of script name in server drop down ([c42bd19](https://github.com/soliantconsulting/fm-mock-server/commit/c42bd194e55bcc4e7ca2d0cd1f40d2875b12b2f5))
+
 # [1.6.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.5.0...v1.6.0) (2024-08-02)
 
 
