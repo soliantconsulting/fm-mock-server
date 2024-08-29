@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.7.0...v1.8.0) (2024-08-29)
+
+
+### Features
+
+* shorten fake protocol name in docs ([4a6c5e6](https://github.com/soliantconsulting/fm-mock-server/commit/4a6c5e615c6bb989295b7ba496a0a0878eee6fc0))
+
 # [1.7.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.6.0...v1.7.0) (2024-08-14)
 
 
