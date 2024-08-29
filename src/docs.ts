@@ -65,7 +65,7 @@ export const renderDocs = async (options: Options): Promise<void> => {
     });
 
     builder.addServer({
-        url: "script-name: ",
+        url: "script: ",
     });
 
     builder.addResponse("GenericError", options.errorResponse ?? defaultErrorResponse);
