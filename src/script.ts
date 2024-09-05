@@ -21,7 +21,7 @@ export type Script<T = unknown> = {
 
 export type ScriptHandlerResult =
     | {
-          data: unknown;
+          data?: unknown;
           meta?: unknown;
       }
     | {
