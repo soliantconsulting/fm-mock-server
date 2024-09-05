@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.8.0...v1.9.0) (2024-09-05)
+
+
+### Features
+
+* allow data property to be omitted ([0c488dc](https://github.com/soliantconsulting/fm-mock-server/commit/0c488dc4d33e788dfe8fe08853d64c91bc45b1fc))
+
 # [1.8.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.7.0...v1.8.0) (2024-08-29)
 
 
