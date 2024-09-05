@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.9.0...v1.10.0) (2024-09-05)
+
+
+### Features
+
+* allow responseSchema to be omitted ([fc40a25](https://github.com/soliantconsulting/fm-mock-server/commit/fc40a25035f9de31cf5aab8f398e9c41f3e6221e))
+
 # [1.9.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.8.0...v1.9.0) (2024-09-05)
 
 
