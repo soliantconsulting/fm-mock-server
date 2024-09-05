@@ -9,7 +9,7 @@ export type ScriptDefinition = {
     description: string;
     summary?: string;
     requestSchema: SchemaObject | ReferenceObject;
-    responseSchema: SchemaObject | ReferenceObject;
+    responseSchema?: SchemaObject | ReferenceObject;
     metaSchema?: SchemaObject | ReferenceObject;
 };
 
