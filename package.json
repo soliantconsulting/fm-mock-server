@@ -2,6 +2,10 @@
   "name": "@soliantconsulting/fm-mock-server",
   "version": "1.10.0",
   "description": "Mock server for FileMaker OData script calls",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soliantconsulting/fm-mock-server.git"
+  },
   "type": "module",
   "author": "Soliant Consulting",
   "license": "MIT",
