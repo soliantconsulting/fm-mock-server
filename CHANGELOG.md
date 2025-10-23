@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/soliantconsulting/fm-mock-server/compare/v1.10.0...v1.10.1) (2025-10-23)
+
+
+### Bug Fixes
+
+* add provenance attestation ([aeffe78](https://github.com/soliantconsulting/fm-mock-server/commit/aeffe784cb68f94fd160633f6c95348f5cca86dd))
+
 # [1.10.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.9.0...v1.10.0) (2024-09-05)
 
 
