@@ -1,14 +1,17 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { OpenApiBuilder, type ResponseObject } from "openapi3-ts/oas31";
+import { type OpenAPIObject, OpenApiBuilder, type ResponseObject } from "openapi3-ts/oas31";
 import type { ScriptManager } from "./manager.js";
 
-type Options = {
-    outputPath: string;
-    scriptManager: ScriptManager;
+type BuildOptions = {
     title: string;
     version?: string;
     errorResponse?: ResponseObject;
+};
+
+type RenderOptions = BuildOptions & {
+    outputPath: string;
+    scriptManager: ScriptManager;
 };
 
 const defaultErrorResponse: ResponseObject = {
@@ -56,7 +59,10 @@ const defaultErrorResponse: ResponseObject = {
     },
 };
 
-export const renderDocs = async (options: Options): Promise<void> => {
+export const buildOpenApiSpec = (
+    scriptManager: ScriptManager,
+    options: BuildOptions,
+): OpenAPIObject => {
     const builder = new OpenApiBuilder();
 
     builder.addInfo({
@@ -70,8 +76,8 @@ export const renderDocs = async (options: Options): Promise<void> => {
 
     builder.addResponse("GenericError", options.errorResponse ?? defaultErrorResponse);
 
-    const scriptDefinitions = options.scriptManager.getScriptDefinitions();
-    const schemaDependencies = options.scriptManager.getSchemaDependencies();
+    const scriptDefinitions = scriptManager.getScriptDefinitions();
+    const schemaDependencies = scriptManager.getSchemaDependencies();
 
     for (const [name, pathItemObject] of Object.entries(scriptDefinitions)) {
         builder.addPath(name, pathItemObject);
@@ -81,6 +87,11 @@ export const renderDocs = async (options: Options): Promise<void> => {
         builder.addSchema(name, schemaObject);
     }
 
+    return builder.getSpec();
+};
+
+export const renderDocs = async (options: RenderOptions): Promise<void> => {
+    const builder = new OpenApiBuilder(buildOpenApiSpec(options.scriptManager, options));
     const spec = builder.getSpecAsYaml();
 
     await mkdir(path.dirname(options.outputPath), { recursive: true });
