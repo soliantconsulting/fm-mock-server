@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/soliantconsulting/fm-mock-server/compare/v2.0.0...v2.1.0) (2026-03-24)
+
+
+### Features
+
+* add OpenAPI preview via Redoc to the dev server ([c2ec887](https://github.com/soliantconsulting/fm-mock-server/commit/c2ec8872a7a0902deb7bb8109fefdf9519ff10ea))
+
 # [2.0.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.10.1...v2.0.0) (2026-03-24)
 
 
