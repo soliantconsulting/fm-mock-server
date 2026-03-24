@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/soliantconsulting/fm-mock-server/compare/v1.10.1...v2.0.0) (2026-03-24)
+
+
+### Features
+
+* replace koa with taxum ([8ddc461](https://github.com/soliantconsulting/fm-mock-server/commit/8ddc46193ec27b9ceb8396d0ad4015c33ef9b484))
+
+
+### BREAKING CHANGES
+
+* you now need to wait `runServer()`
+
 ## [1.10.1](https://github.com/soliantconsulting/fm-mock-server/compare/v1.10.0...v1.10.1) (2025-10-23)
 
 
