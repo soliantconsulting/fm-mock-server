@@ -1,6 +1,6 @@
-import Router from "koa-tree-router";
+import { m, Router } from "@taxum/core/routing";
 import type { PathItemObject, SchemaObject } from "openapi3-ts/oas31";
-import { type Script, buildScriptPathItemObject, scriptHandlerProxy } from "./script.js";
+import { buildScriptPathItemObject, type Script, scriptHandlerProxy } from "./script.js";
 
 export class ScriptManager {
     private readonly scripts = new Map<string, Script>();
@@ -21,7 +21,10 @@ export class ScriptManager {
         const router = new Router();
 
         for (const [name, script] of this.scripts.entries()) {
-            router.post(`/fmi/odata/v4/test/Script.${name}`, scriptHandlerProxy(script.handler));
+            router.route(
+                `/fmi/odata/v4/test/Script.${name}`,
+                m.post(scriptHandlerProxy(script.handler)),
+            );
         }
 
         return router;

@@ -28,26 +28,21 @@
   "scripts": {
     "build": "tsc",
     "format": "biome format . --write",
-    "check": "biome check . --apply"
+    "check": "biome check . --write"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.7.1",
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@tsconfig/node20": "^20.1.4",
-    "@types/koa": "^2.15.0",
-    "@types/koa-bodyparser": "^4.3.12",
-    "@types/node": "^20.12.7",
-    "lefthook": "^1.6.10",
-    "typescript": "^5.4.5"
+    "@biomejs/biome": "2.4.8",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@tsconfig/node24": "^24.0.4",
+    "@types/node": "^25.5.0",
+    "lefthook": "^2.1.4",
+    "typescript": "^6.0.2"
   },
   "dependencies": {
-    "http-graceful-shutdown": "^3.1.13",
-    "koa": "^2.15.3",
-    "koa-bodyparser": "^4.4.1",
-    "koa-tree-router": "^0.12.1",
-    "openapi3-ts": "^4.3.1",
-    "zod": "^3.23.4"
+    "@taxum/core": "^1.2.1",
+    "openapi3-ts": "^4.5.0",
+    "zod": "^4.3.6"
   },
-  "packageManager": "pnpm@8.15.6+sha256.01c01eeb990e379b31ef19c03e9d06a14afa5250b82e81303f88721c99ff2e6f"
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be"
 }

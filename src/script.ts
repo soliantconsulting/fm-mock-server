@@ -1,4 +1,6 @@
-import type { RouterContext } from "koa-tree-router";
+import { json } from "@taxum/core/extract";
+import { type HttpRequest, jsonResponse } from "@taxum/core/http";
+import type { Handler } from "@taxum/core/routing";
 import type { PathItemObject, ReferenceObject, SchemaObject } from "openapi3-ts/oas31";
 import { z } from "zod";
 
@@ -37,15 +39,17 @@ const bodySchema = z.object({
     scriptParameterValue: z.unknown(),
 });
 
+const jsonExtractor = json(bodySchema);
+
 export const scriptHandlerProxy =
-    (scriptHandler: ScriptHandler<unknown>) =>
-    async (context: RouterContext): Promise<void> => {
-        const bodyParseResult = bodySchema.safeParse(context.request.body);
+    (scriptHandler: ScriptHandler<unknown>): Handler =>
+    async (request: HttpRequest) => {
+        const body = await jsonExtractor(request);
+        const bodyParseResult = bodySchema.safeParse(body);
 
         if (!bodyParseResult.success) {
             console.error(bodyParseResult.error);
-            context.body = { scriptResult: { code: 1, resultParameter: "" } };
-            return;
+            return jsonResponse({ scriptResult: { code: 1, resultParameter: "" } });
         }
 
         let scriptResult: ScriptHandlerResult;
@@ -54,16 +58,15 @@ export const scriptHandlerProxy =
             scriptResult = await scriptHandler(bodyParseResult.data.scriptParameterValue);
         } catch (error) {
             console.error(error);
-            context.body = { scriptResult: { code: 1, resultParameter: "" } };
-            return;
+            return jsonResponse({ scriptResult: { code: 1, resultParameter: "" } });
         }
 
-        context.body = {
+        return jsonResponse({
             scriptResult: {
                 code: 0,
                 resultParameter: JSON.stringify(scriptResult),
             },
-        };
+        });
     };
 
 export const buildScriptPathItemObject = (definition: ScriptDefinition): PathItemObject => {

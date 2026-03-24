@@ -1,9 +1,11 @@
 {
-    "extends": ["@tsconfig/node20/tsconfig.json"],
+    "extends": ["@tsconfig/node24/tsconfig.json"],
     "compilerOptions": {
+        "types": ["node"],
         "strict": true,
         "noImplicitAny": true,
         "sourceMap": true,
+        "rootDir": "src",
         "outDir": "dist",
         "declaration": true,
         "stripInternal": true

@@ -1,6 +1,4 @@
-import gracefulShutdown from "http-graceful-shutdown";
-import Koa from "koa";
-import bodyParser from "koa-bodyparser";
+import { serve } from "@taxum/core/server";
 import type { ScriptManager } from "./manager.js";
 
 type Options = {
@@ -9,16 +7,17 @@ type Options = {
     hostname?: string;
 };
 
-export const runServer = (options: Options) => {
-    const app = new Koa();
-    app.use(bodyParser());
-
+export const runServer = async (options: Options) => {
     const router = options.scriptManager.createRouter();
-    app.use(router.routes());
 
-    const server = app.listen(options.port, options.hostname, undefined, () => {
-        console.info(`Server started on ${JSON.stringify(server.address())}`);
+    await serve(router, {
+        port: options.port,
+        hostname: options.hostname,
+        catchCtrlC: true,
+        onListen: (address) => {
+            console.info(`Server started on ${JSON.stringify(address)}`);
+        },
     });
 
-    gracefulShutdown(server);
+    process.exit(0);
 };
