@@ -1,68 +1,84 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-import { type OpenAPIObject, OpenApiBuilder, type ResponseObject } from "openapi3-ts/oas31";
-import type { ScriptManager } from "./manager.js";
+import { escapeHTML } from "fast-escape-html";
+import {
+    type OpenAPIObject,
+    OpenApiBuilder,
+    type PathItemObject,
+    type SchemaObject,
+} from "openapi3-ts/oas31";
+import { z } from "zod";
+import type { Script } from "./script.js";
 
 type BuildOptions = {
     title: string;
     version?: string;
-    errorResponse?: ResponseObject;
 };
 
-type RenderOptions = BuildOptions & {
-    outputPath: string;
-    scriptManager: ScriptManager;
-};
+const buildScriptWebhookObject = (script: Script): PathItemObject => {
+    const requestSchema = script.requestSchema
+        ? (z.toJSONSchema(script.requestSchema) as SchemaObject)
+        : undefined;
+    const successResponseSchema = script.successResponseSchema
+        ? (z.toJSONSchema(script.successResponseSchema) as SchemaObject)
+        : undefined;
+    const failureResponseSchema = script.failureResponseSchema
+        ? (z.toJSONSchema(script.failureResponseSchema) as SchemaObject)
+        : undefined;
 
-const defaultErrorResponse: ResponseObject = {
-    description: "Generic error response",
-    content: {
-        "application/json": {
-            schema: {
-                type: "object",
-                properties: {
-                    errors: {
-                        type: "array",
-                        items: {
-                            type: "object",
-                            properties: {
-                                code: {
-                                    type: "string",
-                                    description: "Machine readable snake_case code",
-                                    minLength: 1,
-                                },
-                                title: {
-                                    type: "string",
-                                    description:
-                                        "Title of the error, should not change per error code",
-                                    minLength: 1,
-                                },
-                                detail: {
-                                    type: "string",
-                                    description: "Detailed description of the error",
-                                    minLength: 1,
-                                },
-                                expose: {
-                                    type: "boolean",
-                                    description: "Whether to expose the error to the end-user",
-                                    default: false,
-                                },
-                            },
-                            required: ["code", "title"],
-                        },
-                        minItems: 1,
-                    },
-                },
-                required: ["errors"],
+    const summary = script.summary ?? script.description;
+    const description = `**Script name:** \`${script.name}\`\n\n${script.description}`;
+
+    return {
+        post: {
+            tags: script.tags,
+            description,
+            summary,
+            ...(requestSchema
+                ? {
+                      requestBody: {
+                          required: true,
+                          content: {
+                              "application/json": {
+                                  schema: requestSchema,
+                              },
+                          },
+                      },
+                  }
+                : {}),
+            responses: {
+                ...(successResponseSchema
+                    ? {
+                          "200": {
+                              description: "Successful response",
+                              content: {
+                                  "application/json": {
+                                      schema: successResponseSchema,
+                                  },
+                              },
+                          },
+                      }
+                    : {
+                          "204": {
+                              description: "No content",
+                          },
+                      }),
+                ...(failureResponseSchema
+                    ? {
+                          "400": {
+                              description: "Failure response",
+                              content: {
+                                  "application/json": {
+                                      schema: failureResponseSchema,
+                                  },
+                              },
+                          },
+                      }
+                    : {}),
             },
         },
-    },
+    };
 };
 
-export const buildOpenApiSpec = (
-    scriptManager: ScriptManager,
-    options: BuildOptions,
-): OpenAPIObject => {
+export const buildOpenApiSpec = (scripts: Script[], options: BuildOptions): OpenAPIObject => {
     const builder = new OpenApiBuilder();
 
     builder.addInfo({
@@ -70,30 +86,40 @@ export const buildOpenApiSpec = (
         version: options.version ?? "1.0.0",
     });
 
-    builder.addServer({
-        url: "script: ",
-    });
-
-    builder.addResponse("GenericError", options.errorResponse ?? defaultErrorResponse);
-
-    const scriptDefinitions = scriptManager.getScriptDefinitions();
-    const schemaDependencies = scriptManager.getSchemaDependencies();
-
-    for (const [name, pathItemObject] of Object.entries(scriptDefinitions)) {
-        builder.addPath(name, pathItemObject);
-    }
-
-    for (const [name, schemaObject] of Object.entries(schemaDependencies)) {
-        builder.addSchema(name, schemaObject);
+    for (const script of scripts) {
+        builder.addWebhook(script.name, buildScriptWebhookObject(script));
     }
 
     return builder.getSpec();
 };
 
-export const renderDocs = async (options: RenderOptions): Promise<void> => {
-    const builder = new OpenApiBuilder(buildOpenApiSpec(options.scriptManager, options));
-    const spec = builder.getSpecAsYaml();
+const scalarConfig = {
+    hideClientButton: true,
+    hideTestRequestButton: true,
+    hiddenClients: true,
+    defaultOpenAllTags: true,
+    agent: { disabled: true },
+    mcp: { disabled: true },
+    telemetry: false,
+};
 
-    await mkdir(path.dirname(options.outputPath), { recursive: true });
-    await writeFile(options.outputPath, spec);
+export const renderDocsHtml = (scripts: Script[], options: BuildOptions): string => {
+    const spec = buildOpenApiSpec(scripts, options);
+
+    return `<!DOCTYPE html>
+<html>
+  <head>
+    <title>${escapeHTML(spec.info.title)}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      .section-column:has(.scalar-reference-intro-server) { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <script id="api-reference" data-configuration="${escapeHTML(JSON.stringify(scalarConfig))}" type="application/json">${escapeHTML(JSON.stringify(spec))}</script>
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+  </body>
+</html>
+`;
 };

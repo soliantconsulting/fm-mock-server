@@ -3,11 +3,13 @@
     "compilerOptions": {
         "types": ["node"],
         "noImplicitAny": true,
-        "outDir": "dist"
+        "sourceMap": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "declaration": true,
+        "stripInternal": true
     },
     "include": [
-        "src/**/*",
-        "test/**/*",
-        "demo/**/*"
+        "src/**/*"
     ]
 }

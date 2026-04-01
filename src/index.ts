@@ -1,4 +1,11 @@
-export { buildOpenApiSpec, renderDocs } from "./docs.js";
-export { ScriptManager } from "./manager.js";
-export type { Script, ScriptDefinition, ScriptHandler, ScriptHandlerResult } from "./script.js";
+export { buildOpenApiSpec, renderDocsHtml } from "./docs.js";
+export {
+    createScript,
+    defaultErrorObjectSchema,
+    defaultFailureResponseSchema,
+    type ErrorObject,
+    type MultiFailureResponse,
+    type Script,
+    type SingleFailureResponse,
+} from "./script.js";
 export { runServer } from "./server.js";
