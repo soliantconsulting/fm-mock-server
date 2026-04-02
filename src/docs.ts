@@ -117,7 +117,7 @@ export const renderDocsHtml = (scripts: Script[], options: BuildOptions): string
     </style>
   </head>
   <body>
-    <script id="api-reference" data-configuration="${escapeHTML(JSON.stringify(scalarConfig))}" type="application/json">${escapeHTML(JSON.stringify(spec))}</script>
+    <script id="api-reference" data-configuration="${escapeHTML(JSON.stringify(scalarConfig))}" type="application/json">${JSON.stringify(spec).replaceAll("</", "<\\/")}</script>
     <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
   </body>
 </html>
