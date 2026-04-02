@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/soliantconsulting/fm-mock-server/compare/v3.0.0...v3.0.1) (2026-04-02)
+
+
+### Bug Fixes
+
+* don't HTML-escape JSON inside script tag in Scalar docs ([72aa407](https://github.com/soliantconsulting/fm-mock-server/commit/72aa407bf86ebe684ef97cb894bdb05765af2f76))
+
 # [3.0.0](https://github.com/soliantconsulting/fm-mock-server/compare/v2.1.0...v3.0.0) (2026-04-02)
 
 
