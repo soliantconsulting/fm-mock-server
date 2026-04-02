@@ -1,3 +1,25 @@
+# [3.0.0](https://github.com/soliantconsulting/fm-mock-server/compare/v2.1.0...v3.0.0) (2026-04-02)
+
+
+### Features
+
+* rewrite with Zod-first createScript API and Scalar docs ([bc086c5](https://github.com/soliantconsulting/fm-mock-server/commit/bc086c54dfeb1046dbd9d5f26fd1d88186a627a9))
+
+
+### BREAKING CHANGES
+
+* The entire public API has changed. `ScriptManager` is
+removed; pass `Script[]` directly to `runServer()`, `buildOpenApiSpec()`,
+and `renderDocsHtml()`. Scripts are now defined via `createScript()`
+with Zod schemas instead of manual OpenAPI schema objects. The
+`renderDocs()` function (YAML file output) is replaced by
+`renderDocsHtml()` (Scalar HTML). Exports `ScriptDefinition`,
+`ScriptHandler`, and `ScriptHandlerResult` are removed; use `Script`
+and the new `ErrorObject`, `SingleFailureResponse`, and
+`MultiFailureResponse` types instead.
+
+Co-Authored-By: Claude Opus 4.6 (1M context) <noreply@anthropic.com>
+
 # [2.1.0](https://github.com/soliantconsulting/fm-mock-server/compare/v2.0.0...v2.1.0) (2026-03-24)
 
 
