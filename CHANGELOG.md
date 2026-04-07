@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/soliantconsulting/fm-mock-server/compare/v3.0.1...v3.0.2) (2026-04-07)
+
+
+### Bug Fixes
+
+* default to z.void() in buildResponseSchema for missing success schema ([4e75cbf](https://github.com/soliantconsulting/fm-mock-server/commit/4e75cbfd13d9c814f78600f39116091b4093df48))
+
 ## [3.0.1](https://github.com/soliantconsulting/fm-mock-server/compare/v3.0.0...v3.0.1) (2026-04-02)
 
 
