@@ -124,12 +124,11 @@ const validateSchema = (
     return { success: true, value: result.data };
 };
 
-const buildResponseSchema = (script: Script): ZodType | undefined => {
-    if (script.successResponseSchema && script.failureResponseSchema) {
-        return script.successResponseSchema.or(script.failureResponseSchema);
-    }
-
-    return script.successResponseSchema ?? script.failureResponseSchema;
+const buildResponseSchema = (script: Script): ZodType => {
+    const successResponseSchema = script.successResponseSchema ?? z.void();
+    return script.failureResponseSchema
+        ? successResponseSchema.or(script.failureResponseSchema)
+        : successResponseSchema;
 };
 
 const executeHandler = async (
@@ -145,19 +144,13 @@ const executeHandler = async (
         return { success: false };
     }
 
-    const combinedSchema = buildResponseSchema(script);
+    const validated = validateSchema(script.name, "Response", buildResponseSchema(script), result);
 
-    if (combinedSchema) {
-        const validated = validateSchema(script.name, "Response", combinedSchema, result);
-
-        if (!validated.success) {
-            return { success: false };
-        }
-
-        return { success: true, result: validated.value };
+    if (!validated.success) {
+        return { success: false };
     }
 
-    return { success: true, result };
+    return { success: true, result: validated.value };
 };
 
 export const scriptHandlerProxy =

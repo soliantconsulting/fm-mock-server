@@ -233,6 +233,44 @@ describe("scriptHandlerProxy", () => {
         });
     });
 
+    it("accepts void return when only failureResponseSchema is defined", async () => {
+        const script = createScript({
+            name: "test",
+            description: "Test",
+            failureResponseSchema: defaultFailureResponseSchema.single,
+        }).handler(async () => {
+            // void return — success with no data
+        });
+
+        const handler = scriptHandlerProxy(script);
+        const request = createJsonRequest({ scriptParameterValue: null });
+        const response = await handler(request);
+        const body = await resolveResponseBody(response);
+
+        assert.deepEqual(body, {
+            scriptResult: { code: 0, resultParameter: "" },
+        });
+    });
+
+    it("rejects void return when successResponseSchema is defined without failureResponseSchema", async () => {
+        const script = createScript({
+            name: "test",
+            description: "Test",
+            successResponseSchema: z.object({ data: z.object({ name: z.string() }) }),
+        }).handler(async () => {
+            return undefined as never;
+        });
+
+        const handler = scriptHandlerProxy(script);
+        const request = createJsonRequest({ scriptParameterValue: null });
+        const response = await handler(request);
+        const body = await resolveResponseBody(response);
+
+        assert.deepEqual(body, {
+            scriptResult: { code: 1, resultParameter: "" },
+        });
+    });
+
     it("rejects error response when no failureResponseSchema is defined", async () => {
         const script = createScript({
             name: "test",
